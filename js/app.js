@@ -8,14 +8,28 @@ const resultDisplay = document.getElementById("resultDisplay");
 const playerScoreDisplay = document.getElementById("playerScoreDisplay");
 const computerScoreDisplay = document.getElementById("computerScoreDisplay");
 
-let playerScore = 0;
-let computerScore = 0;
+let playerScore = getScoreFromCookie("playerScore");
+let computerScore = getScoreFromCookie("computerScore");
 
-
-
-
-//let playerScore = 0;
-//let computerScore = 0;
+//Read previous values from cookies
+// let playerScore = getCookie("playerScore");
+// let computerScore = getCookie("computerScore");
+//
+// if (playerScore === "") {
+//   playerScore = 0;
+//   //Omvändlar värde i string till number
+// } else {
+//   playerScore = parseInt(playerScore);
+// }
+// if (computerScore === "") {
+//   computerScore = 0;
+//   //Omvandlar värde i string till number
+// } else {
+//   computerScore = parseInt(computerScore);
+// }
+//När jag laddar sidan. Initala uppdateringen av scoreboard
+playerScoreDisplay.textContent = String(playerScore);
+computerScoreDisplay.textContent = String(computerScore);
 
 //Function of the game. Chooses between 0,1,2 (=rock, paper, scissors).
 function playGame(playerChoice) {
@@ -58,18 +72,22 @@ function playGame(playerChoice) {
   playerChoiceDisplay.textContent = playerChoice;
   computerChoiceDisplay.textContent = computerChoice;
   resultDisplay.textContent = result;
-  //Uppdatering av scoreboard så att resultatet visas
-  playerScoreDisplay.textContent = playerScore;
-  computerScoreDisplay.textContent = computerScore;
+  //Uppdatering av scoreboard så att resultatet visas efter varje omgång (+konvertering av playerScore nummer till string
+  playerScoreDisplay.textContent = String(playerScore);
+  computerScoreDisplay.textContent = String(computerScore);
+
+  document.cookie = `playerScore=${playerScore}; expires=Thu, 18 Dec 2025 12:00:00 UTC`
+  document.cookie = `computerScore=${computerScore}; expires=Thu, 18 Dec 2025 12:00:00 UTC`
+  console.log("kaka", document.cookie);
 
 }
 
 
-
-//First cookies attempt
-document.cookie = "username=John Doe; expires=Thu, 18 Dec 2025 12:00:00 UTC";
-let previousPlayerScore = getCookie("playerScoreHistory");
-
+/**
+ * Returns string value of a given cookie if it exists, otherwise the empty string ("").
+ * @param cname Name of the cookie for which to get the value
+ * @returns {string} The string value of the cookie, or the empty string
+ */
 function getCookie(cname) {
   let name = cname + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
@@ -84,4 +102,19 @@ function getCookie(cname) {
     }
   }
   return "";
+}
+
+/**
+ * Returns number value of a given cookie if it exists, otherwise 0.
+ * @param cname Name of the cookie for which get the value.
+ * @returns {number} The number value of the cookie, or 0.
+ */
+function getScoreFromCookie(cname) {
+  const score = getCookie(cname);
+
+  if (score === "") {
+    return 0;
+  }
+
+  return parseInt(score);
 }
