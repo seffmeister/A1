@@ -23,8 +23,8 @@
 </head>
 
 <body>
-<h1>Hello Stanley! This is Gabriel.</h1>
-<h1>Lets play:</h1>
+<span class="introduction">Hello Stanley! This is Gabriel.</span>
+<span class="introduction">Let's play:</span>
 
 <div class="choices">
   <button onclick="playGame('rock')">Rock</button>
@@ -32,15 +32,15 @@
   <button onclick="playGame('scissors')">Scissors</button>
 </div>
 
-<div id="playerDisplay">Player choice:</div>
-<div id="computerDisplay">My choice:</div>
+<div class="choiceDisplay">Player choice: <span id="playerChoiceDisplay"></span></div>
+<div class="choiceDisplay">My choice: <span id="computerChoiceDisplay"></span></div>
 <div id="resultDisplay"></div>
 
 <div class="scoreboardDisplay"> Player score:
-  <span id="playerScoreDisplay"> 0</span>
+  <span id="playerScoreDisplay">0</span>
 </div>
 <div class="scoreboardDisplay"> Computer score:
-  <span id="computerScoreDisplay"> 0</span>
+  <span id="computerScoreDisplay">0</span>
 </div>
 <p>She is good, isn't she</p>
   <script src="js/app.js"></script>

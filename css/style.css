@@ -267,7 +267,7 @@ h1{
   border-radius: 250px;
   cursor: pointer;
 }
-#playerDisplay, #computerDisplay{
+.choiceDisplay{
   font-size: 2rem;
 }
 #resultDisplay{
@@ -282,4 +282,7 @@ h1{
 }
 .redText{
   color: red;
+}
+.introduction {
+  font-size: 4rem;
 }

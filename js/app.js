@@ -1,22 +1,19 @@
 //Nu kör vi
 
 const choices = ["rock", "paper", "scissors"];
-const playerDisplay = document.getElementById("playerDisplay");
-const computerDisplay = document.getElementById("computerDisplay");
+const playerChoiceDisplay = document.getElementById("playerChoiceDisplay");
+const computerChoiceDisplay = document.getElementById("computerChoiceDisplay");
 const resultDisplay = document.getElementById("resultDisplay");
-
-let playerChoice = 0;
-let computerChoice = 0;
+//Added const for scoreboard
+const playerScoreDisplay = document.getElementById("playerScoreDisplay");
+const computerScoreDisplay = document.getElementById("computerScoreDisplay");
 
 let playerScore = 0;
 let computerScore = 0;
 
-const scoreboard = ["rock", "paper", "scissors"];
-console.log(scoreboard);
 
 
-//const playerScoreDisplay = document.getElementById("playerScoreDisplay");
-//const computerScoreDisplay = document.getElementById("computerScoreDisplay");
+
 //let playerScore = 0;
 //let computerScore = 0;
 
@@ -58,10 +55,33 @@ function playGame(playerChoice) {
 
 
 
-  playerDisplay.textContent = `Player choice: ${playerChoice}`;
-  computerDisplay.textContent = `My choice: ${computerChoice}`;
+  playerChoiceDisplay.textContent = playerChoice;
+  computerChoiceDisplay.textContent = computerChoice;
   resultDisplay.textContent = result;
-
+  //Uppdatering av scoreboard så att resultatet visas
+  playerScoreDisplay.textContent = playerScore;
+  computerScoreDisplay.textContent = computerScore;
 
 }
 
+
+
+//First cookies attempt
+document.cookie = "username=John Doe; expires=Thu, 18 Dec 2025 12:00:00 UTC";
+let previousPlayerScore = getCookie("playerScoreHistory");
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) === ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) === 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
